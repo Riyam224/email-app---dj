@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+
+{% block content  %}
+
+<div class="container mt-5">
+
+
+    {% if message_name %}
+    <center>
+        <h3>thanks {{ message_name }} </h3>
+        <p>we recieved your email .</p>
+    </center>
+    <br><br>
+    <br>
+    {%else %}
+    <form method="POST" novalidate mt-4>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="text" name='message-name' class="form-control" id="exampleInputName"
+                aria-describedby="emailHelp">
+
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Email</label>
+            <input type="email" name="message-email" class="form-control" id="exampleInputEmail">
+        </div>
+        <br>
+        <div class="form-group form-check">
+            <textarea name="message" class="form-control"></textarea>
+            <label class="form-check-label" for="exampleCheck1">Fill the message field</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+    {% endif %}
+
+
+    <br>
+</div>
+{% endblock content  %}
